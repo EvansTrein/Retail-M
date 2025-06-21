@@ -1,0 +1,52 @@
+@use './_reset.scss';
+@use './vars.scss';
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./../fonts/Montserrat-Medium.eot');
+  src: url('./../fonts/Montserrat-Medium.woff2') format('woff2'),
+    url('./../fonts/Montserrat-Medium.woff') format('woff'), url('./../fonts/Montserrat-Medium.ttf') format('truetype');
+  font-style: normal;
+  font-display: auto;
+}
+
+:root {
+  --base-font-size: 16px;
+  --transition-fast: 0.4s;
+  --transition-medium: 0.6s;
+  --transition-slow: 0.8s;
+  --border-radius-s: 4px;
+  --border-radius-m: 8px;
+  --border-radius-l: 12px;
+  --border-radius-xl: 20px;
+}
+
+body {
+  font-family: 'Montserrat', Arial, sans-serif;
+  background-color: #000;
+  font-size: var(--base-font-size);
+  color: #fff;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
