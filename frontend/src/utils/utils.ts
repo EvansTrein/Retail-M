@@ -17,12 +17,24 @@ export function convertTimestampToLocaleString(timestamp: number): string {
 /**
  * Конвертирует строку даты в UNIX-временную метку в миллисекундах
  * @param dateStr - Строка в формате ISO или любой другого понятного JS
- * @returns UNIX-временная метка в миллисекундах
+ * @returns UNIX-временная метка в СЕКУНДАХ
  */
 export function convertLocaleStringToTimestamp(dateStr: string): number {
   const date = new Date(dateStr);
   if (isNaN(date.getTime())) {
     throw new Error(`Invalid date string: ${dateStr}`);
   }
-  return date.getTime();
+  return date.getTime() / 1000;
+}
+
+export function getRangeDates(): { startDate: string; endDate: string } {
+  const today = new Date();
+
+  const pastDate = new Date();
+  pastDate.setDate(pastDate.getDate() - 180);
+
+  return {
+    startDate: pastDate.toISOString().split('T')[0],
+    endDate: today.toISOString().split('T')[0]
+  };
 }

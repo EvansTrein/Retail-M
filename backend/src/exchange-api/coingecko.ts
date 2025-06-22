@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import { IRate } from '@/entities/rate';
+import { logger } from '@/logger';
 
 dotenv.config({ path: 'local.env' });
 
@@ -43,7 +44,7 @@ export async function getApiRangeData(from: number, to: number): Promise<IRate[]
 
   const response = await fetch(url, options);
 
-  if (!response.ok) {
+  if (response.status !== 200) {
     const errorData = await response.json();
     throw new Error(`API request failed with status ${response.status}: ${JSON.stringify(errorData)}`);
   }

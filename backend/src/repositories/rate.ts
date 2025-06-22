@@ -16,6 +16,22 @@ export class RateRepo {
     this.mongo = db;
   }
 
+  public async checkConnect(): Promise<void> {
+    logger.info('Connection to mongoDB started...', { module: 'repositories' });
+    await this.mongo.connect();
+    const result = await this.mongo.db('admin').command({ ping: 1 });
+    try {
+      if (result.ok === 1) {
+        logger.info(`Successful connect DB to ${process.env.MONGO_URI}`, { module: 'repositories' });
+        return;
+      }
+      throw new Error('Unexpected response from MongoDB after ping command');
+    } catch (err) {
+      logger.error(String(err), { module: 'repositories' });
+      throw new Error('Failed to connect to MongoDB');
+    }
+  }
+
   public async initData(): Promise<void> {
     const db = this.mongo.db(MONGO_DB_NAME);
     const collection = db.collection(MONGO_COLLECTION_NAME!);

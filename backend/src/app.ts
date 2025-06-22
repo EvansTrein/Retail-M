@@ -23,8 +23,6 @@ export class App {
       monitorCommands: true,
     });
 
-    logger.info(`successful connect DB to ${process.env.MONGO_URI}`, { module: 'app' });
-
     const allowedOrigins = process.env.CLIENT_ORIGINS
       ? process.env.CLIENT_ORIGINS.split(',')
       : ['http://localhost:5173'];
@@ -48,7 +46,9 @@ export class App {
     expressInst.use(express.urlencoded({ extended: true }));
 
     const rateRepo = new RateRepo(this.db);
-    rateRepo.initData();
+    rateRepo.checkConnect().then(() => {
+      rateRepo.initData();
+    });
 
     const rateService = new RateService(rateRepo);
     const rateController = new RateController(rateService);
@@ -63,7 +63,7 @@ export class App {
   }
 
   public async stop(): Promise<void> {
-    logger.info('Starting graceful shutdown');
+    logger.info('Starting graceful shutdown', { module: 'app' });
 
     return new Promise((resolve, reject) => {
       this.server.close((err) => {

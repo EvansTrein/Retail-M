@@ -3,10 +3,11 @@
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('./../fonts/Montserrat-Medium.eot');
-  src: url('./../fonts/Montserrat-Medium.woff2') format('woff2'),
-    url('./../fonts/Montserrat-Medium.woff') format('woff'), url('./../fonts/Montserrat-Medium.ttf') format('truetype');
+  src: url('../fonts/Montserrat-Medium.woff2') format('woff2'),
+    url('../fonts/Montserrat-Medium.woff') format('woff'),
+    url('../fonts/Montserrat-Medium.ttf') format('truetype');
   font-style: normal;
+  font-weight: 500;
   font-display: auto;
 }
 
@@ -19,23 +20,21 @@
   --border-radius-m: 8px;
   --border-radius-l: 12px;
   --border-radius-xl: 20px;
+  --primary-color: rgb(3, 87, 165);
+  --primary-dark-color: rgb(3, 37, 116);
 }
 
 body {
-  font-family: 'Montserrat', Arial, sans-serif;
-  background-color: #000;
+	background-color: #000;
   font-size: var(--base-font-size);
   color: #fff;
 }
 
-a {
-  color: #fff;
-  text-decoration: none;
-}
-
 * {
+	font-family: 'Montserrat', Arial, sans-serif;
+	font-weight: 500;
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.5) transparent;
+  scrollbar-color: var(--primary-color) transparent;
 }
 
 *::-webkit-scrollbar {
@@ -47,6 +46,6 @@ a {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0);
   border-radius: 10px;
 }

@@ -32,8 +32,6 @@ ChartJS.register(Title, Tooltip, Legend, CategoryScale, LinearScale, PointElemen
 
 const chartOptions = computed(() => {
   const prices = rateStore.data.map((item) => item.price);
-  const priceDiff = Math.max(...prices) - Math.min(...prices);
-  const stepSize = priceDiff > 1000 ? 500 : 100;
 
   return {
     responsive: true,
@@ -58,7 +56,6 @@ const chartOptions = computed(() => {
         min: Math.min(...prices),
         max: Math.max(...prices),
         ticks: {
-          stepSize,
           color: '#ffff',
           font: {
             size: 15,
@@ -80,6 +77,15 @@ const chartOptions = computed(() => {
       },
       tooltip: {
         enabled: true,
+        backgroundColor: 'grey',
+        bodyColor: '#000',
+        titleColor: '#000',
+				bodyFont: {
+					size: 15,
+				},
+				titleFont: {
+					size: 15,
+				},
         callbacks: {
           label: (context: any) => {
             const label = context.dataset.label || '';
@@ -103,10 +109,10 @@ const chartData = computed(() => {
     labels,
     datasets: [
       {
-        label: 'Price USD',
+        label: 'Bitcoin / USD',
         data: prices,
-        borderColor: '#42b983',
-        backgroundColor: 'rgba(66, 185, 131, 0.2)',
+        borderColor: 'rgb(3, 87, 165)',
+        backgroundColor: 'rgb(3, 87, 165, 0.2)',
         borderWidth: 3,
         hoverBorderColor: '#fff',
       },

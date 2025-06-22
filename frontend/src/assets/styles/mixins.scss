@@ -10,36 +10,30 @@
   background-color: rgb(19, 148, 98);
 }
 
-@mixin center65w {
-  width: 65%;
+@mixin center80w {
+  width: 80%;
   margin: 0 auto;
 
   @media (max-width: vars.$wideBrp) {
-    width: 80%;
-  }
-
-  @media (max-width: vars.$largeBrp) {
     width: 85%;
   }
 
-  @media (max-width: vars.$xxlBrp) {
+  @media (max-width: vars.$largeBrp) {
     width: 90%;
   }
 
-  @media (max-width: vars.$xlBrp) {
+  @media (max-width: vars.$xxlBrp) {
     width: 92%;
   }
 
-  @media (max-width: vars.$mdBrp) {
+  @media (max-width: vars.$xlBrp) {
     width: 95%;
-		padding: 1rem 1rem;
+    padding: 1rem 1rem;
   }
 
-  @media (max-width: vars.$smBrp) {
+  @media (max-width: vars.$mdBrp) {
     width: 100%;
-  }
-
-  @media (max-width: vars.$xsBrp) {
+    padding: 1rem 1rem;
   }
 }
 

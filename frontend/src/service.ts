@@ -26,4 +26,27 @@ export class RateService {
       return [];
     }
   }
+
+	public async loadRangeData(from: number, to: number): Promise<IRate[] | null> {
+    try {
+      const response = await fetch(`${BASE_URL}/api/range?from=${from}&to=${to}`);
+
+      if (!response.ok) {
+        alert(`HTTP error! status: ${response.status}`);
+				return null
+      }
+
+      const data = await response.json();
+
+      const rates: IRate[] = data.map((item: { timestamp: number; price: number }) => ({
+				timestamp: item.timestamp,
+				price: item.price,
+			}));
+
+      return rates;
+    } catch (error) {
+      console.error('Error loading rates:', error);
+      return null;
+    }
+  }
 }
