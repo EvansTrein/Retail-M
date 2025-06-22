@@ -25,11 +25,13 @@ const onSubmit = () => {
   const startTimestamp = convertLocaleStringToTimestamp(startDateForm.value);
   const endTimestamp = convertLocaleStringToTimestamp(endDateForm.value);
 
-  console.log('Start timestamp:', startTimestamp);
-  console.log('End timestamp:', endTimestamp);
-
   if (startTimestamp > endTimestamp) {
     alert('start date cannot be greater than end date');
+    return;
+  }
+
+	if (startTimestamp === endTimestamp) {
+    alert('start date and end date cannot be equal');
     return;
   }
 

@@ -32,7 +32,7 @@ export class RateService {
       const response = await fetch(`${BASE_URL}/api/range?from=${from}&to=${to}`);
 
       if (!response.ok) {
-        alert(`HTTP error! status: ${response.status}`);
+        alert(`HTTP error! status: ${response.status}. The requested period may exceed 365 days`);
 				return null
       }
 
